@@ -1,45 +1,66 @@
 import React, { useEffect } from "react";
 import Header from "../Header";
 import {
-  MOVIE_CONFIG,
-  MOVIE_LIST_URL,
-  movieVideoUrl,
+  NOW_PLAYING_MOVIES_URL,
+  POPULAR_MOVIES_URL,
+  TOP_RATED_MOVIES_URL,
+  UPCOMING_MOVIES_URL,
 } from "../../utils/constants";
-import MovieVideo from "./components/MovieVideo";
+import MovieTrailer from "./components/MovieTrailer";
 import MovieSuggestions from "./components/MovieSuggestions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import useFetchMovies from "./components/useFetchMovies";
+import useFetchTrailer from "./components/useFetchTrailer";
 import {
-  addMovieList,
-  addMovieVideo,
+  addNowPlayingMovieList,
+  addPopularMoviesList,
   addSelectedMovieDetails,
+  addTopRatedMoviesList,
+  addUpcomingMoviesList,
 } from "../../redux/slice/movieSlice";
+import MovieSearch from "./components/MovieSearch";
 
 const Browse = () => {
   const dispatch = useDispatch();
+  const showOverlay = useSelector((store) => store.movieSearch.showOverlay);
+  const nowPlayingMovies = useFetchMovies(NOW_PLAYING_MOVIES_URL);
+  const popularMovies = useFetchMovies(POPULAR_MOVIES_URL);
+  const topRatedMovies = useFetchMovies(TOP_RATED_MOVIES_URL);
+  const upcomingMovies = useFetchMovies(UPCOMING_MOVIES_URL);
+
+  useFetchTrailer(nowPlayingMovies[1]?.id);
 
   useEffect(() => {
-    fetchMovies();
-  }, []);
+    if (nowPlayingMovies) {
+      dispatch(addNowPlayingMovieList(nowPlayingMovies));
+      dispatch(addSelectedMovieDetails(nowPlayingMovies[1]));
+    }
+  }, [nowPlayingMovies]);
 
-  const fetchMovies = async () => {
-    const movieList = await fetch(MOVIE_LIST_URL, MOVIE_CONFIG);
-    const data = await movieList.json();
-    dispatch(addMovieList(data?.results));
-    dispatch(addSelectedMovieDetails(data?.results[1]));
+  useEffect(() => {
+    if (popularMovies) {
+      dispatch(addPopularMoviesList(popularMovies));
+    }
+  }, [popularMovies]);
 
-    const movieVideoId = data?.results[1]?.id;
+  useEffect(() => {
+    if (topRatedMovies) {
+      dispatch(addTopRatedMoviesList(topRatedMovies));
+    }
+  }, [topRatedMovies]);
 
-    const videoDetails = await fetch(movieVideoUrl(movieVideoId), MOVIE_CONFIG);
-    const res = await videoDetails.json();
-    const trailer = res?.results.filter((item) => item.type === "Trailer");
-
-    dispatch(addMovieVideo(trailer.length === 1 ? trailer[0] : trailer[1]));
-  };
+  useEffect(() => {
+    if (upcomingMovies) {
+      dispatch(addUpcomingMoviesList(upcomingMovies));
+    }
+  }, [upcomingMovies]);
 
   return (
     <div>
       <Header logoStyle={"w-26 h-12 absolute top-2 left-12 z-20"} />
-      <MovieVideo />
+      {showOverlay && <MovieSearch></MovieSearch>}
+      <MovieTrailer />
       <MovieSuggestions />
     </div>
   );

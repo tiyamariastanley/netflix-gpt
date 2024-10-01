@@ -13,13 +13,21 @@ export const MOVIE_CONFIG = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNWVhNDQ1ZDUyMWUwZWE2NGZlNzY2NzQzZmUwOGQ2NyIsIm5iZiI6MTcyNzExNTM5Mi43MDY1MzksInN1YiI6IjY2ZjFhZjI5ZGUyZDUyZGZiZDhkNDIzNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Do_UvFCenghM9Mu95I0vDS_Z6zUCD3-ZGLfU-Hg-mEE",
+    Authorization: "Bearer " + process.env.REACT_APP_TMDB_API_KEY,
   },
 };
 
-export const MOVIE_LIST_URL =
+export const NOW_PLAYING_MOVIES_URL =
   "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
+
+export const POPULAR_MOVIES_URL =
+  "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
+
+export const TOP_RATED_MOVIES_URL =
+  "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
+
+export const UPCOMING_MOVIES_URL =
+  "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1";
 
 export const movieVideoUrl = (movieVideoId) =>
   `https://api.themoviedb.org/3/movie/${movieVideoId}/videos?language=en-US`;

@@ -12,7 +12,7 @@ function App() {
       <RouterProvider router={routes}>
         <Header />
         <Outlet></Outlet>
-        <Footer />
+        {/* <Footer /> */}
       </RouterProvider>
     </Provider>
   );

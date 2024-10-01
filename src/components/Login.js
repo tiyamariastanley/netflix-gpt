@@ -24,7 +24,6 @@ const Login = () => {
       emailRef.current.value,
       passRef.current.value
     );
-    console.log(passRef.current.value, emailRef.current.value);
 
     if (!errorMsg && !login) {
       createUserWithEmailAndPassword(
