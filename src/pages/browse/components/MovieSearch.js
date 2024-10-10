@@ -15,15 +15,15 @@ const MovieSearch = ({ input = "funny malayalam movies" }) => {
   const searchResults = useSelector((store) => store.movieSearch.searchResult);
   const resultDetails = useSelector((store) => store.movieSearch.resultDetails);
 
-  useEffect(() => {
-    movieSearch();
-  }, []);
+  // useEffect(() => {
+  //   movieSearch();
+  // }, []);
 
-  useEffect(() => {
-    if (searchResults.length > 0) {
-      getMovieDetails();
-    }
-  }, [searchResults]);
+  // useEffect(() => {
+  //   if (searchResults.length > 0) {
+  //     getMovieDetails();
+  //   }
+  // }, [searchResults]);
 
   const movieSearch = async () => {
     //This is the actual openAI API call. But need subscription to do this. So i'm mocking the call and returning a result
@@ -78,7 +78,7 @@ const MovieSearch = ({ input = "funny malayalam movies" }) => {
   }
 
   return (
-    <div className="bg-black w-4/5 h-fit absolute top-[20%] left-[10%] z-50 opacity-95">
+    <div className="w-4/5 h-fit absolute top-[20%] left-[10%] z-50 opacity-95">
       <div
         className="float-end relative right-3 top-3 cursor-pointer"
         onClick={() => {
@@ -86,7 +86,7 @@ const MovieSearch = ({ input = "funny malayalam movies" }) => {
           dispatch(closeOverlay());
         }}
       >
-        ✖
+        ❌
       </div>
       <div className="flex justify-center flex-wrap gap-4 p-14">
         {resultDetails.map((item) => (

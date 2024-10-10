@@ -18,8 +18,8 @@ const MovieSuggestions = () => {
   ];
 
   return (
-    <div className="bg-black">
-      <div className="-mt-28 relative z-30 w-screen">
+    <div>
+      <div className="-mt-36 relative z-30 w-screen">
         {movieList.map((item) => (
           <div
             key={item.category}

@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { MOVIE_CONFIG, movieVideoUrl } from "../../../utils/constants";
 import { useDispatch } from "react-redux";
 import { addMovieTrailer } from "../../../redux/slice/movieSlice";
 
 const useFetchTrailer = (movieId) => {
-  const dispatch = useDispatch();
+  const [trailerDetails, setTrailerDetails] = useState({});
 
   useEffect(() => {
     if (movieId) {
@@ -16,9 +16,10 @@ const useFetchTrailer = (movieId) => {
     const videoDetails = await fetch(movieVideoUrl(movieId), MOVIE_CONFIG);
     const res = await videoDetails.json();
     const trailer = res?.results?.filter((item) => item.type === "Trailer");
-
-    dispatch(addMovieTrailer(trailer?.length === 1 ? trailer[0] : trailer[1]));
+    setTrailerDetails(trailer);
   };
+
+  return trailerDetails;
 };
 
 export default useFetchTrailer;

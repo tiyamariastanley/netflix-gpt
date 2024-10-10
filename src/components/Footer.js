@@ -2,8 +2,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-black mt-auto h-20 flex justify-center items-center border-t-2 z-100 bottom-0">
-      Copywright @2024
+    <footer className="mt-10 flex justify-center items-center z-40 bottom-0 left-0 text-white text-xs p-5">
+      NetflixGPT Copywright @2024
     </footer>
   );
 };

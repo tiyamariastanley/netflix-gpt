@@ -11,3 +11,7 @@
 - NetflixGPT
   - Search Bar
   - Movie suggestions
+  - Movie Details page with comments
+  - Live Chat
+    - Get live data
+    - Update the UI

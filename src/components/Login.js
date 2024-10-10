@@ -72,7 +72,6 @@ const Login = () => {
 
   return (
     <div>
-      <Header logoStyle={"w-44 h-20 absolute top-3 left-40 z-20"} />
       <div className="absolute">
         <img alt="background-image" src={BACKGROUND_IMG}></img>
       </div>

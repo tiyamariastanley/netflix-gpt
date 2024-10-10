@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Header from "../Header";
 import {
   NOW_PLAYING_MOVIES_URL,
   POPULAR_MOVIES_URL,
@@ -13,13 +12,13 @@ import { useDispatch, useSelector } from "react-redux";
 import useFetchMovies from "./components/useFetchMovies";
 import useFetchTrailer from "./components/useFetchTrailer";
 import {
+  addMovieTrailer,
   addNowPlayingMovieList,
   addPopularMoviesList,
   addSelectedMovieDetails,
   addTopRatedMoviesList,
   addUpcomingMoviesList,
 } from "../../redux/slice/movieSlice";
-import MovieSearch from "./components/MovieSearch";
 
 const Browse = () => {
   const dispatch = useDispatch();
@@ -28,8 +27,14 @@ const Browse = () => {
   const popularMovies = useFetchMovies(POPULAR_MOVIES_URL);
   const topRatedMovies = useFetchMovies(TOP_RATED_MOVIES_URL);
   const upcomingMovies = useFetchMovies(UPCOMING_MOVIES_URL);
+  const trailer = useFetchTrailer(nowPlayingMovies[0]?.id);
 
-  useFetchTrailer(nowPlayingMovies[1]?.id);
+  useEffect(() => {
+    if (trailer)
+      dispatch(
+        addMovieTrailer(trailer?.length === 1 ? trailer[0] : trailer[1])
+      );
+  }, [trailer]);
 
   useEffect(() => {
     if (nowPlayingMovies) {
@@ -58,10 +63,10 @@ const Browse = () => {
 
   return (
     <div>
-      <Header logoStyle={"w-26 h-12 absolute top-2 left-12 z-20"} />
-      {showOverlay && <MovieSearch></MovieSearch>}
+      {/* {showOverlay && <MovieSearch></MovieSearch>} */}
       <MovieTrailer />
       <MovieSuggestions />
+      {/* <Footer /> */}
     </div>
   );
 };
