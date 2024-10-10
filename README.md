@@ -11,3 +11,5 @@
 - NetflixGPT
   - Search Bar
   - Movie suggestions
+- Youtube like search with debouncing
+- Video page with comments and live chat using API polling
