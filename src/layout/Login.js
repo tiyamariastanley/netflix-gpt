@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import Header from "./Header";
 import { validateEmailPassword } from "../utils/validateForm";
 import {
   createUserWithEmailAndPassword,
@@ -9,6 +8,7 @@ import {
 import { auth } from "../firebase";
 import { BACKGROUND_IMG } from "../utils/constants";
 import Footer from "./Footer";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
   const [login, setLogin] = useState(true);
@@ -57,8 +57,6 @@ const Login = () => {
       )
         .then((userCredential) => {
           // Signed in
-          const user = userCredential.user;
-          console.log("login user", user);
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -84,7 +82,6 @@ const Login = () => {
             <input
               className="p-3 rounded-md bg-black border text-white"
               type="text"
-              valu=""
               placeholder="Full name"
               required
               ref={nameRef}
@@ -93,7 +90,6 @@ const Login = () => {
           <input
             className="p-3 rounded-md bg-black border text-white"
             type="text"
-            valu=""
             placeholder="Email address or mobile number"
             required
             ref={emailRef}
@@ -101,7 +97,6 @@ const Login = () => {
           <input
             className="p-3 rounded-md bg-black border text-white"
             type="password"
-            valu=""
             placeholder="Password"
             required
             ref={passRef}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Header from "../../components/Header";
+import Header from "../../layout/Header";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useFetchTrailer from "../browse/components/useFetchTrailer";
@@ -16,10 +16,10 @@ const MoviePage = () => {
       setMovieDetails(trailer?.length === 1 ? trailer[0] : trailer[1]);
   }, [trailer]);
 
-  useEffect(() => {
-    // Scroll to top when the component mounts
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   // Scroll to top when the component mounts
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   return (
     <div className="w-screen grid grid-cols-8 py-28">

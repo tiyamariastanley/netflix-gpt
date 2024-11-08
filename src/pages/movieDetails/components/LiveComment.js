@@ -2,7 +2,10 @@ import React from "react";
 
 const LiveComment = ({ data }) => {
   return (
-    <div className="flex flex-row items-center gap-3 mb-5 text-xs border-b border-b-gray-500 pb-2">
+    <div
+      className="flex flex-row items-center gap-3 mb-5 text-xs border-b border-b-gray-500 pb-2"
+      data-testid="live-comment"
+    >
       <img
         className="rounded-full bg-gray-400 w-5 h-5"
         alt="user-icon"

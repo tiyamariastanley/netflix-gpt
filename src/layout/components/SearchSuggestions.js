@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addSearchInput } from "../../../redux/slice/movieSearchSlice";
 import { isEmpty } from "lodash";
-import { cacheSuggestions } from "../../../redux/slice/searchSuggestionSlice";
+import { cacheSuggestions } from "../../redux/slice/searchSuggestionSlice";
 
 const SearchSuggestions = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -16,7 +15,7 @@ const SearchSuggestions = () => {
     if (cachedData[searchInput]) {
       setSuggestionData(cachedData[searchInput]);
     } else {
-      timer = setTimeout(() => searchAPI(), 400);
+      timer = setTimeout(() => searchAPI(), 200);
     }
 
     return () => clearTimeout(timer);

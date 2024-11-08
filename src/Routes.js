@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import Browse from "./pages/browse/Browse";
 import MoviePage from "./pages/movieDetails/MoviePage";
-import Login from "./components/Login";
+import Login from "./layout/Login";
 import App from "./App";
 
 export const routes = createBrowserRouter([

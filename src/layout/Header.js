@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { LOGO_URL, USER_ICON } from "../utils/constants";
-import SearchSuggestions from "../pages/browse/components/SearchSuggestions";
+import SearchSuggestions from "./components/SearchSuggestions";
 
 const Header = ({ logoStyle }) => {
   const { displayName } = useSelector((store) => store.user.userInfo);

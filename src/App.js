@@ -5,8 +5,8 @@ import {
   useNavigate,
 } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from "./layout/Header";
+import Footer from "./layout/Footer";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
@@ -23,9 +23,9 @@ function App() {
     // Firebase returns unsubscribe on onAuthStateChanged setup
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const { name, uid, email, displayName } = user;
-        dispatch(addUserInfo({ name, uid, email, displayName }));
-        console.log("signin");
+        const { uid, email, displayName } = user;
+        dispatch(addUserInfo({ uid, email, displayName }));
+        console.log("signin", user);
         if (
           window.location.pathname === "/login" ||
           window.location.pathname === "/"

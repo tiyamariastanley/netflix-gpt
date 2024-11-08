@@ -22,11 +22,15 @@ import {
 
 const Browse = () => {
   const dispatch = useDispatch();
-  const showOverlay = useSelector((store) => store.movieSearch.showOverlay);
-  const nowPlayingMovies = useFetchMovies(NOW_PLAYING_MOVIES_URL);
-  const popularMovies = useFetchMovies(POPULAR_MOVIES_URL);
-  const topRatedMovies = useFetchMovies(TOP_RATED_MOVIES_URL);
-  const upcomingMovies = useFetchMovies(UPCOMING_MOVIES_URL);
+  const {
+    data: nowPlayingMovies,
+    loading: loadingNowPlaying,
+    error: errorNowPlaying,
+  } = useFetchMovies(NOW_PLAYING_MOVIES_URL);
+  const { data: popularMovies } = useFetchMovies(POPULAR_MOVIES_URL);
+  const { data: topRatedMovies } = useFetchMovies(TOP_RATED_MOVIES_URL);
+  const { data: upcomingMovies } = useFetchMovies(UPCOMING_MOVIES_URL);
+
   const trailer = useFetchTrailer(nowPlayingMovies[0]?.id);
 
   useEffect(() => {
@@ -39,7 +43,7 @@ const Browse = () => {
   useEffect(() => {
     if (nowPlayingMovies) {
       dispatch(addNowPlayingMovieList(nowPlayingMovies));
-      dispatch(addSelectedMovieDetails(nowPlayingMovies[1]));
+      dispatch(addSelectedMovieDetails(nowPlayingMovies[0]));
     }
   }, [nowPlayingMovies]);
 

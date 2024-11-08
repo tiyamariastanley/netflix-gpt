@@ -64,7 +64,10 @@ const commentsData = [
 const DisplayReplies = ({ data }) => {
   return (
     <>
-      <div className="flex flex-row align-middle gap-3 mb-5">
+      <div
+        className="flex flex-row align-middle gap-3 mb-5"
+        data-testid="comment-card"
+      >
         <img
           className="rounded-full bg-gray-400 w-8 h-8"
           alt="user-icon"
