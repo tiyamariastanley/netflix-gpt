@@ -1,3 +1,6 @@
+# netflix-gpt
+
+This is a small abstract version of the Netflix app.
 Hosted at - https://netflixgpt-49239.web.app
 
 # Features
@@ -8,8 +11,7 @@ Hosted at - https://netflixgpt-49239.web.app
   - Main Movie
     - Trailer in the background
     - Movie title & description
-- Movie list & Suggestions
-  - Vertical scroll
+    - Movie list & Suggestions
 - NetflixGPT
   - Search Bar
   - Movie suggestions
