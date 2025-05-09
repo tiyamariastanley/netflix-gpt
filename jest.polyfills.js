@@ -9,10 +9,16 @@
  */
 
 console.log("Polyfill loaded");
-global.TextEncoder = require("util").TextEncoder;
-global.TextDecoder = require("util").TextDecoder;
+
+import { TextEncoder, TextDecoder } from "util";
+if (typeof global.TextEncoder === "undefined") {
+  global.TextEncoder = TextEncoder;
+}
+if (typeof global.TextDecoder === "undefined") {
+  global.TextDecoder = TextDecoder;
+}
+
 const { performance } = require("node:perf_hooks");
-const { TextDecoder, TextEncoder } = require("node:util");
 const { ReadableStream, TransformStream } = require("node:stream/web");
 const { clearImmediate } = require("node:timers");
 

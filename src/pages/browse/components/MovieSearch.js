@@ -56,7 +56,6 @@ const MovieSearch = ({ input = "funny malayalam movies" }) => {
   };
 
   const getMovieDetails = async () => {
-    //Map function returns a promise array. It doesnt wait for each API call to get fullfilled.
     const promiseArray = searchResults.map(async (item) => {
       const res = await fetch(
         `https://api.themoviedb.org/3/search/movie?query=${item}&include_adult=false&language=en-US&page=1`,
@@ -67,7 +66,6 @@ const MovieSearch = ({ input = "funny malayalam movies" }) => {
       return resultDetails.results[0];
     });
 
-    //Promise.all will return the result once all promises are resolved
     const details = await Promise.all(promiseArray);
 
     dispatch(addResultDetails(details));

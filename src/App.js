@@ -33,7 +33,6 @@ function App() {
           navigate("/browse");
         }
       } else {
-        // User is signed out
         console.log("signout");
 
         dispatch(removeUserInfo());
@@ -43,7 +42,6 @@ function App() {
       }
     });
 
-    //Called when header component is unmounted
     return () => unsubscribe();
   }, [dispatch]);
 
@@ -56,7 +54,7 @@ function App() {
             : "w-26 h-12 absolute top-2 left-12 z-20"
         } `}
       />
-      <Outlet /> {/* Render the matched route here */}
+      <Outlet />
       <Footer />
     </div>
   );

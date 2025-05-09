@@ -4,6 +4,9 @@
  */
 
 /** @type {import('jest').Config} */
+
+console.log("Jest configuration loaded");
+
 const config = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,

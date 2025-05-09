@@ -3,49 +3,30 @@ import "@testing-library/jest-dom";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import MOCK_SEARCH_RESULT from "../../__mocks__/SearchMockData.json";
 import { Provider } from "react-redux";
-import Header from "./Header";
-import { BrowserRouter } from "react-router-dom";
 import SearchSuggestions from "./components/SearchSuggestions";
 import store from "../store";
+import { onAuthStateChanged } from "firebase/auth";
 
-jest.mock("firebase/auth", () => ({
-  getAuth: jest.fn(),
-  onAuthStateChanged: jest.fn(),
-  createUserWithEmailAndPassword: jest.fn(() =>
-    Promise.resolve({
-      user: {
-        uid: "testUID",
-        email: "test@example.com",
-        displayName: "Test User",
-      },
-    })
-  ),
-  signInWithEmailAndPassword: jest.fn(() =>
-    Promise.resolve({
-      user: {
-        uid: "testUID",
-        email: "test@example.com",
-        displayName: "Test User",
-      },
-    })
-  ),
-  signOut: jest.fn(() => Promise.resolve()),
-}));
+jest.mock("../../__mocks__/firebase/auth");
 
-beforeAll(
-  () =>
-    (global.fetch = jest.fn(() =>
-      Promise.resolve({
-        json: () => Promise.resolve(MOCK_SEARCH_RESULT),
-      })
-    ))
-);
+beforeAll(() => {
+  global.fetch = jest.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve(MOCK_SEARCH_RESULT),
+    })
+  );
+});
 
 afterEach(() => fetch.mockClear());
 
 afterAll(() => delete global.fetch);
 
 it("Should check movie search functionlaity", async () => {
+  const callback = jest.fn();
+  const auth = {};
+
+  onAuthStateChanged(auth, callback);
+
   await act(() =>
     render(
       <Provider store={store}>

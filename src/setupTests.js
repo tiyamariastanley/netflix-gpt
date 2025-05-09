@@ -4,6 +4,30 @@
 // learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom";
 
-// beforeAll(() => server.listen());
+// beforeAll(() => {
+//   jest.mock("firebase/auth", () => ({
+//     getAuth: jest.fn(),
+//     onAuthStateChanged: jest.fn(),
+//     createUserWithEmailAndPassword: jest.fn(() =>
+//       Promise.resolve({
+//         user: {
+//           uid: "testUID",
+//           email: "test@example.com",
+//           displayName: "Test User",
+//         },
+//       })
+//     ),
+//     signInWithEmailAndPassword: jest.fn(() =>
+//       Promise.resolve({
+//         user: {
+//           uid: "testUID",
+//           email: "test@example.com",
+//           displayName: "Test User",
+//         },
+//       })
+//     ),
+//     signOut: jest.fn(() => Promise.resolve()),
+//   }));
+// });
 // afterEach(() => server.resetHandlers());
 // afterAll(() => server.close());

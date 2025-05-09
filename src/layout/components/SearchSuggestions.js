@@ -28,7 +28,7 @@ const SearchSuggestions = () => {
 
   const searchAPI = async () => {
     const res = await fetch(
-      `http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=${searchInput}`
+      `https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=${searchInput}`
     );
     const data = await res.json();
 

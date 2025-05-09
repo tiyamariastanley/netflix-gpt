@@ -25,7 +25,7 @@ const useFetchMovies = (url) => {
     };
 
     fetchMovies();
-  }, [url]); // Fetch again if the URL changes
+  }, [url]);
 
   return { data, loading, error };
 };
